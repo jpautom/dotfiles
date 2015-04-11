@@ -171,6 +171,16 @@ shopt -s histappend
 #
 # Based on original Ubuntu 14.04 .bashrc
 
+# Git prompt
+# https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
+# Usage: insert $(__git_ps1) somewhere in the PS1 variable
+source ~/.git-prompt.sh
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWCOLORHINTS=1
+GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_DESCRIBE_STYLE="branch"
+GIT_PS1_SHOWUPSTREAM="auto git"
+
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
@@ -198,7 +208,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1)\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -212,18 +222,6 @@ xterm*|rxvt*)
 *)
     ;;
 esac
-
-# Git prompt
-# https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh
-source ~/.git-prompt.sh
-GIT_PS1_SHOWDIRTYSTATE=1
-GIT_PS1_SHOWCOLORHINTS=1
-GIT_PS1_SHOWUPSTREAM="auto"
-GIT_PS1_SHOWUNTRACKEDFILES=1
-PS1="$(__git_ps1) $PS1"
-#PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ; }"'__git_ps1 "\u@\h:\w" "\\\$ "'
-
-
 
 
 ## -----------------------
