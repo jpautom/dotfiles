@@ -224,6 +224,18 @@ xterm*|rxvt*)
 esac
 
 
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+
 ## -----------------------
 ## -- 2) Set up aliases --
 ## -----------------------
@@ -265,6 +277,8 @@ export GREP_COLOR='1;31' # green for matches
 # http://www.gnu.org/software/coreutils/faq/coreutils-faq.html#Sort-does-not-sort-in-normal-order_0021
 unset LANG
 export LC_ALL=POSIX
+
+
 
 ## ------------------------------
 ## -- 3) User-customized code  --
