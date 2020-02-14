@@ -1,0 +1,4 @@
+/.vim/*
+!/.vim/filetype.vim
+!/.vim/after
+
